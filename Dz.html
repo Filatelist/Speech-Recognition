@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Speech Detection</title>
+</head>
+<body>
+<div class="info">
+	<p>For correct work, use the Google Chrome and check, if the permition of using the mic is enable</p>
+</div>
+  <div class="words" contenteditable>
+  </div>
+
+  <script src="Speech.js"></script>
+
+
+  <style>
+  p{
+  	margin-top: 29px;
+  }
+  .info{
+  	float: center;
+  	background-color: #DFE7D7;
+  	padding: 10px;
+  	border-radius: 5px;
+  	margin-bottom: 20px;
+  }
+    html {
+      font-size: 20px;
+    }
+    body {
+      font-family: Arial;
+      	background-image: url(axiom-pattern.png);
+    }
+    .words {
+
+      max-width:800px;
+      background:#F1F3EE;
+      float: center;
+      width: 700px;
+      margin: auto;
+      height: 400px;
+      overflow-y: scroll;
+      line-height:3rem;
+      border-radius: 8px;
+      border:2px solid #DFE7D7;
+    }
+    p {
+      margin: 0 0 3px;
+    }
+    .words:before {
+      content: '';
+    }
+  </style>
+
+</body>
+</html>
