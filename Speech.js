@@ -1,21 +1,25 @@
-
-window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; //спершу перевіряємо чи має користувач доступ до API
+п»ї
+window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; //СЃРїРµСЂС€Сѓ РїРµСЂРµРІС–СЂСЏС”РјРѕ С‡Рё РјР°С” РєРѕСЂРёСЃС‚СѓРІР°С‡ РґРѕСЃС‚СѓРї РґРѕ API
 if (!window.SpeechRecognition) {
     alert('Your browser has no access to the speech-to-text API');
 }
-var recognition = new SpeechRecognition();//створюємо об'єкт SpeechRecognition
-recognition.interimResults = true; //визначає чи повинні повертатися проміжні результати
+var recognition = new SpeechRecognition();//СЃС‚РІРѕСЂСЋС”РјРѕ РѕР±'С”РєС‚ SpeechRecognition
+recognition.interimResults = true; //РІРёР·РЅР°С‡Р°С” С‡Рё РїРѕРІРёРЅРЅС– РїРѕРІРµСЂС‚Р°С‚РёСЃСЏ РїСЂРѕРјС–Р¶РЅС– СЂРµР·СѓР»СЊС‚Р°С‚Рё
 
-recognition.lang = 'en-EN';
+recognition.lang = 'en-EN';//РІРёР·РЅР°С‡РµРЅРЅСЏ РјРѕРІРё
 
-var paragraph = document.createElement('p');//створює новий елемент <p>
-var words = document.querySelector('.words');
-words.appendChild(paragraph);
+var paragraph = document.createElement('p');//СЃС‚РІРѕСЂСЋС” РЅРѕРІРёР№ РµР»РµРјРµРЅС‚ <p>
+var words = document.querySelector('.words');//РїРѕРІРµСЂС‚Р°С” РЅРµ РІСЃС– Р° Р»РёС€Рµ РїРµСЂС€РёР№ РІС–РґРїРѕРІС–РґРЅРёР№ css-СЃРµР»РµРєС‚РѕСЂСѓ
+words.appendChild(paragraph); //РґРѕРґР°С”РјРѕ РІСЃРµСЂРµРґРёРЅСѓ РµР»РµРјРµРЅС‚Р° words paragraph
 recognition.addEventListener('result', e => {
     var transcript = Array.from(e.results)
-        .map(result => result[0])//метод map() створює новий масив з результатами виклику функції на кожному елементі масиву
-        .map(result => result.transcript)
-        .join(''); //об'єднує всі елементи масиву в рядок
+    transcript.map((function (result) {
+        return result[0];
+    })()) //РјРµС‚РѕРґ map() СЃС‚РІРѕСЂСЋС” РЅРѕРІРёР№ РјР°СЃРёРІ Р· СЂРµР·СѓР»СЊС‚Р°С‚Р°РјРё РІРёРєР»РёРєСѓ С„СѓРЅРєС†С–С— РЅР° РєРѕР¶РЅРѕРјСѓ РµР»РµРјРµРЅС‚С– РјР°СЃРёРІСѓ
+    transcript.map((function (result) {
+        return result.transcript
+    })())
+    transcript.join(''); //РѕР±'С”РґРЅСѓС” РІСЃС– РµР»РµРјРµРЅС‚Рё РјР°СЃРёРІСѓ РІ СЂСЏРґРѕРє
     paragraph.textContent = transcript;
     if (e.results[0].isFinal) {
         paragraph = document.createElement('p');
